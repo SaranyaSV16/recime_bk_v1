@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,5 +75,20 @@ public class RecipeController {
                 .body(recipes);
                 
     }
-
+    
+    @GetMapping("/cuisine/{cuisine}")
+    public ResponseEntity<?> findBy(@PathVariable String cuisine){
+    	List<Recipe> recipes = recipeRepo.findBy(cuisine);
+    	return ResponseEntity
+    			.status(HttpStatus.OK)
+    			.body(recipes);
+    }
+    
+    @GetMapping("/replace/{id}")
+    public ResponseEntity<?> findById(@PathVariable int id){
+    	Recipe recipes = recipeRepo.findById(id);
+    	return ResponseEntity
+    			.status(HttpStatus.OK)
+    			.body(recipes);
+    }
 }

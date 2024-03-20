@@ -1,5 +1,6 @@
 package com.edex.recime.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,9 +14,12 @@ public class Recipe {
 	
 	private int id;
 	private String name;
+	@Column(columnDefinition="TEXT")
 	private String ingredients;
+	@Column(columnDefinition="TEXT")
 	private String steps;
 	private String image;
+	private String cuisine;
 	
 	public int getId() {
 		return id;
@@ -46,6 +50,12 @@ public class Recipe {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public String getCuisine() {
+		return cuisine;
+	}
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
 	}
 	
 }
